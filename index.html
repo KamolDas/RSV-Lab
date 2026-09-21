@@ -16,7 +16,7 @@
     <meta property="og:image" content="https://raw.githubusercontent.com/rsv8lab/rsv8lab/main/banner.png">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Favicon: inline SVG based on the RSV Lab Brain/Logo -->
+    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='80'%3E%F0%9F%A7%AC%3C/text%3E%3C/svg%3E">
 
     <!-- Google Fonts -->
@@ -69,6 +69,8 @@
         /* --- Layout --- */
         .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
         .section { padding: 80px 0; }
+        
+        /* --- Section Titles with RSV Lab Colors --- */
         .section-title {
             font-family: var(--font-serif);
             font-size: 2.25rem;
@@ -78,6 +80,9 @@
             letter-spacing: -0.5px;
             color: var(--dark-navy);
         }
+        .section-title span { color: var(--primary-orange); }
+        .section-title .purple { color: var(--primary-purple); }
+
         .section-subtitle {
             text-align: center;
             color: var(--text-muted);
@@ -111,7 +116,6 @@
             gap: 8px;
         }
         .nav-logo span { color: var(--primary-orange); }
-        .nav-logo .purple { color: var(--primary-purple); }
         .nav-links { display: flex; gap: 35px; font-weight: 600; font-size: 0.95rem; }
         .nav-links a { color: var(--dark-navy); }
         .nav-links a:hover { color: var(--primary-blue); }
@@ -202,7 +206,7 @@
             transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
-            border-top: 5px solid var(--primary-blue); /* Default */
+            border-top: 5px solid var(--primary-blue);
         }
         .card:nth-child(2) { border-top-color: var(--primary-orange); }
         .card:nth-child(3) { border-top-color: var(--primary-purple); }
@@ -327,19 +331,25 @@
             .founder-social { justify-content: center; }
         }
 
-        /* --- Contact Section --- */
+        /* --- Contact Section (Updated with Social Media) --- */
+        .contact-section {
+            background-color: var(--white);
+        }
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
         .contact-card {
-            background: var(--white);
+            background: var(--light-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 35px;
+            padding: 35px 25px;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .contact-card:hover {
             transform: translateY(-5px);
@@ -347,19 +357,42 @@
         }
         .contact-icon {
             font-size: 2.5rem;
-            color: var(--primary-blue);
             margin-bottom: 20px;
         }
+        /* Matching icon colors to brands */
+        .contact-card:nth-child(1) .contact-icon { color: var(--primary-blue); } /* Location */
+        .contact-card:nth-child(2) .contact-icon { color: var(--primary-orange); } /* Email */
+        .contact-card:nth-child(3) .contact-icon { color: var(--primary-purple); } /* Phone */
+        .contact-card:nth-child(4) .contact-icon { color: #1877F2; } /* Facebook */
+        .contact-card:nth-child(5) .contact-icon { color: #FF0000; } /* YouTube */
+        
         .contact-title {
             font-family: var(--font-serif);
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 15px;
             color: var(--dark-navy);
         }
-        .contact-text { color: var(--text-muted); font-size: 1rem; line-height: 1.8; }
+        .contact-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; }
         .contact-text a { color: var(--primary-blue); font-weight: 500; }
         .contact-text a:hover { text-decoration: underline; }
+        
+        /* Social Buttons */
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--white) !important;
+            margin-top: 10px;
+            transition: transform 0.2s;
+        }
+        .social-btn:hover { transform: scale(1.05); text-decoration: none !important; }
+        .fb-btn { background-color: #1877F2; }
+        .yt-btn { background-color: #FF0000; }
 
         /* --- Footer --- */
         .footer {
@@ -368,7 +401,7 @@
             padding: 50px 0;
             text-align: center;
             font-size: 0.9rem;
-            margin-top: 80px;
+            margin-top: 0;
         }
         .footer a { color: #cbd5e1; }
         .footer a:hover { color: var(--white); }
@@ -402,7 +435,8 @@
             </nav>
             <div class="nav-icons">
                 <a href="https://github.com/rsv8lab" target="_blank" rel="noopener" title="RSV Lab GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://github.com/KamolDas" target="_blank" rel="noopener" title="Founder GitHub"><i class="fas fa-user-circle"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100090153347276" target="_blank" rel="noopener" title="RSV Lab Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.youtube.com/@RSVLab" target="_blank" rel="noopener" title="RSV Lab YouTube"><i class="fab fa-youtube"></i></a>
             </div>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
         </div>
@@ -411,7 +445,6 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <!-- Featured Banner Image -->
             <img src="https://raw.githubusercontent.com/rsv8lab/rsv8lab/main/banner.png" alt="RSV Lab Banner" class="hero-banner" onerror="this.style.display='none'">
             
             <h1 class="hero-title">RSV <span>Lab</span></h1>
@@ -428,7 +461,7 @@
     <!-- About Section -->
     <section class="section" id="about">
         <div class="container">
-            <h2 class="section-title">About RSV Lab</h2>
+            <h2 class="section-title">About <span>RSV</span> <span class="purple">Lab</span></h2>
             <p class="section-subtitle">
                 We bridge the gap between traditional microbiology and modern computational analysis, focusing on antimicrobial resistance surveillance and CLSI/EUCAST-compliant susceptibility testing.
             </p>
@@ -455,7 +488,7 @@
     <!-- Publications Section -->
     <section class="section" id="publications" style="background-color: var(--white);">
         <div class="container">
-            <h2 class="section-title">Recent Research &amp; Publications</h2>
+            <h2 class="section-title">Recent <span>Research</span> &amp; Publications</h2>
             <p class="section-subtitle">Our latest contributions to the scientific community, available via open-access repositories.</p>
             <div class="publication-list">
                 <div class="publication-item">
@@ -489,7 +522,7 @@
     <!-- Projects Section -->
     <section class="section" id="projects">
         <div class="container">
-            <h2 class="section-title">Our Projects</h2>
+            <h2 class="section-title">Our <span class="purple">Projects</span></h2>
             <p class="section-subtitle">Open-source tools and research repositories developed by RSV Lab and its founder.</p>
             <div class="project-tabs">
                 <button class="active" onclick="filterSelection('all', event)">All</button>
@@ -549,7 +582,7 @@
     <!-- Founder Section -->
     <section class="section" id="founder" style="background-color: var(--white);">
         <div class="container">
-            <h2 class="section-title">Meet the Founder</h2>
+            <h2 class="section-title">Meet the <span>Founder</span></h2>
             <div class="founder-container">
                 <img src="https://github.com/KamolDas.png" alt="Kamol Das" class="founder-avatar" loading="lazy" onerror="this.src='https://ui-avatars.com/api/?name=Kamol+Das&background=0A66C2&color=fff&size=200'">
                 <div class="founder-info">
@@ -568,12 +601,13 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section" id="contact">
+    <!-- Contact Section (Updated with Social Media) -->
+    <section class="section contact-section" id="contact">
         <div class="container">
-            <h2 class="section-title">Contact Us</h2>
+            <h2 class="section-title">Contact <span>RSV</span> <span class="purple">Lab</span></h2>
             <p class="section-subtitle">Get in touch with RSV Lab for collaborations, research inquiries, or general questions.</p>
             <div class="contact-grid">
+                <!-- Location -->
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h3 class="contact-title">Location</h3>
@@ -582,6 +616,8 @@
                         Chittagong, Bangladesh
                     </p>
                 </div>
+                
+                <!-- Email -->
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <h3 class="contact-title">Email</h3>
@@ -590,6 +626,8 @@
                         <a href="mailto:20605032@std.cu.ac.bd">20605032@std.cu.ac.bd</a>
                     </p>
                 </div>
+                
+                <!-- Phone -->
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-phone"></i></div>
                     <h3 class="contact-title">Phone</h3>
@@ -597,6 +635,26 @@
                         01775-510351<br>
                         01867-771598
                     </p>
+                </div>
+
+                <!-- Facebook -->
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fab fa-facebook"></i></div>
+                    <h3 class="contact-title">Facebook</h3>
+                    <p class="contact-text">Follow RSV Lab for updates, news, and community posts.</p>
+                    <a href="https://www.facebook.com/profile.php?id=100090153347276" target="_blank" rel="noopener" class="social-btn fb-btn">
+                        <i class="fab fa-facebook"></i> Visit Page
+                    </a>
+                </div>
+
+                <!-- YouTube -->
+                <div class="contact-card">
+                    <div class="contact-icon"><i class="fab fa-youtube"></i></div>
+                    <h3 class="contact-title">YouTube</h3>
+                    <p class="contact-text">Subscribe to our channel for tutorials, research talks, and lab updates.</p>
+                    <a href="https://www.youtube.com/@RSVLab" target="_blank" rel="noopener" class="social-btn yt-btn">
+                        <i class="fab fa-youtube"></i> Subscribe
+                    </a>
                 </div>
             </div>
         </div>
@@ -608,6 +666,8 @@
             <p>&copy; 2026 RSV Lab. All rights reserved.</p>
             <div class="footer-links">
                 <a href="https://github.com/rsv8lab" target="_blank" rel="noopener"> RSV Lab GitHub</a>
+                <a href="https://www.facebook.com/profile.php?id=100090153347276" target="_blank" rel="noopener">Facebook</a>
+                <a href="https://www.youtube.com/@RSVLab" target="_blank" rel="noopener">YouTube</a>
                 <a href="https://github.com/KamolDas" target="_blank" rel="noopener">Founder GitHub</a>
             </div>
         </div>
