@@ -13,10 +13,11 @@
     <meta property="og:title" content="RSV Lab | Official Website">
     <meta property="og:description" content="Advancing antimicrobial susceptibility testing, AMR surveillance, and bioinformatics research. Founded by Kamol Das.">
     <meta property="og:url" content="https://rsv8lab.github.io/">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://raw.githubusercontent.com/rsv8lab/rsv8lab/main/banner.png">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Favicon: inline SVG, no external file needed -->
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='80'%3E%F0%9F%94%AC%3C/text%3E%3C/svg%3E">
+    <!-- Favicon: inline SVG based on the RSV Lab Brain/Logo -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='80'%3E%F0%9F%A7%AC%3C/text%3E%3C/svg%3E">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,14 +30,18 @@
     <style>
         /* --- CSS Variables & Reset --- */
         :root {
-            --primary: #0A66C2;
-            --secondary: #1f2937;
-            --accent: #FF8C00;
-            --accent-light: #FFF7ED;
+            /* RSV Lab Brand Colors (Extracted from logo/banner) */
+            --primary-orange: #FF8C00;
+            --primary-purple: #7614DC;
+            --primary-blue: #1E90FF;
+            --dark-navy: #06283d;
             --light-bg: #f8fafc;
             --white: #ffffff;
             --border-color: #e2e8f0;
+            --text-main: #1f2937;
             --text-muted: #64748b;
+            
+            /* Fonts */
             --font-sans: 'Inter', sans-serif;
             --font-serif: 'Source Serif 4', serif;
         }
@@ -46,13 +51,13 @@
         body {
             font-family: var(--font-sans);
             background-color: var(--light-bg);
-            color: var(--secondary);
+            color: var(--text-main);
             line-height: 1.7;
         }
 
-        a { text-decoration: none; color: var(--primary); transition: color 0.2s; }
+        a { text-decoration: none; color: var(--primary-blue); transition: color 0.2s; }
         a:hover { color: #084a8f; }
-        a:focus-visible, button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+        a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-blue); outline-offset: 2px; }
         ul { list-style: none; }
         img { max-width: 100%; height: auto; }
 
@@ -71,7 +76,7 @@
             margin-bottom: 20px;
             text-align: center;
             letter-spacing: -0.5px;
-            color: var(--secondary);
+            color: var(--dark-navy);
         }
         .section-subtitle {
             text-align: center;
@@ -97,18 +102,22 @@
             height: 75px;
         }
         .nav-logo {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 900;
-            color: var(--secondary);
+            color: var(--dark-navy);
             letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .nav-logo span { color: var(--accent); }
+        .nav-logo span { color: var(--primary-orange); }
+        .nav-logo .purple { color: var(--primary-purple); }
         .nav-links { display: flex; gap: 35px; font-weight: 600; font-size: 0.95rem; }
-        .nav-links a { color: var(--secondary); }
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links a { color: var(--dark-navy); }
+        .nav-links a:hover { color: var(--primary-blue); }
         .nav-icons a { margin-left: 20px; font-size: 1.2rem; color: var(--text-muted); }
-        .nav-icons a:hover { color: var(--primary); }
-        .nav-toggle { display: none; background: none; border: none; font-size: 1.4rem; color: var(--secondary); cursor: pointer; }
+        .nav-icons a:hover { color: var(--primary-blue); }
+        .nav-toggle { display: none; background: none; border: none; font-size: 1.4rem; color: var(--dark-navy); cursor: pointer; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -131,18 +140,29 @@
         /* --- Hero Section --- */
         .hero {
             background: var(--white);
-            padding: 80px 0;
+            padding: 60px 0 80px 0;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
         }
+        .hero-banner {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            display: block;
+        }
         .hero-title {
             font-family: var(--font-serif);
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            letter-spacing: -1.5px;
+            letter-spacing: -1px;
             margin-bottom: 15px;
-            color: var(--secondary);
+            color: var(--dark-navy);
         }
+        .hero-title span { color: var(--primary-orange); }
+        .hero-title .purple { color: var(--primary-purple); }
+        
         .hero-subtitle {
             font-size: 1.2rem;
             color: var(--text-muted);
@@ -153,7 +173,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--accent-light);
+            background: #FFF7ED;
             color: #c2410c;
             padding: 8px 20px;
             border-radius: 25px;
@@ -182,7 +202,11 @@
             transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
+            border-top: 5px solid var(--primary-blue); /* Default */
         }
+        .card:nth-child(2) { border-top-color: var(--primary-orange); }
+        .card:nth-child(3) { border-top-color: var(--primary-purple); }
+        
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.06);
@@ -190,14 +214,18 @@
         }
         .card-icon {
             font-size: 2rem;
-            color: var(--primary);
+            color: var(--primary-blue);
             margin-bottom: 20px;
         }
+        .card:nth-child(2) .card-icon { color: var(--primary-orange); }
+        .card:nth-child(3) .card-icon { color: var(--primary-purple); }
+        
         .card-title {
             font-family: var(--font-serif);
             font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 12px;
+            color: var(--dark-navy);
         }
         .card-text {
             color: var(--text-muted);
@@ -211,6 +239,7 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            color: var(--primary-blue);
         }
 
         /* --- Publications --- */
@@ -224,11 +253,12 @@
             border-radius: 12px;
             padding: 30px;
             transition: box-shadow 0.3s;
+            border-left: 5px solid var(--primary-orange);
         }
         .publication-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .pub-title { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 600; }
+        .pub-title { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 600; color: var(--dark-navy); }
         .pub-authors { font-size: 0.95rem; color: var(--text-muted); }
-        .pub-authors strong { color: var(--secondary); }
+        .pub-authors strong { color: var(--text-main); }
         .pub-journal { font-style: italic; font-size: 0.9rem; color: var(--text-muted); }
         .pub-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 5px; }
         .pub-link {
@@ -237,11 +267,11 @@
             padding: 6px 14px;
             background: #f1f5f9;
             border-radius: 6px;
-            color: var(--secondary);
+            color: var(--text-main);
             border: 1px solid var(--border-color);
             transition: all 0.2s;
         }
-        .pub-link:hover { background: var(--primary); color: var(--white); border-color: var(--primary); }
+        .pub-link:hover { background: var(--primary-blue); color: var(--white); border-color: var(--primary-blue); }
 
         /* --- Projects --- */
         .project-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
@@ -254,12 +284,12 @@
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s;
-            color: var(--secondary);
+            color: var(--text-main);
         }
         .project-tabs button.active, .project-tabs button:hover {
-            background: var(--primary);
+            background: var(--primary-purple);
             color: var(--white);
-            border-color: var(--primary);
+            border-color: var(--primary-purple);
         }
 
         /* --- Founder Section --- */
@@ -280,17 +310,17 @@
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid var(--light-bg);
+            border: 5px solid #f0f4f8;
             flex-shrink: 0;
             background: #e2e8f0;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .founder-info h3 { font-family: var(--font-serif); font-size: 2rem; margin-bottom: 5px; }
-        .founder-info .role { color: var(--accent); font-weight: 700; margin-bottom: 15px; font-size: 1.1rem; }
+        .founder-info h3 { font-family: var(--font-serif); font-size: 2rem; margin-bottom: 5px; color: var(--dark-navy); }
+        .founder-info .role { color: var(--primary-orange); font-weight: 700; margin-bottom: 15px; font-size: 1.1rem; }
         .founder-info p { color: var(--text-muted); margin-bottom: 20px; }
         .founder-social { display: flex; gap: 20px; }
         .founder-social a { font-size: 1.6rem; color: var(--text-muted); transition: color 0.2s; }
-        .founder-social a:hover { color: var(--primary); }
+        .founder-social a:hover { color: var(--primary-blue); }
 
         @media (max-width: 768px) {
             .founder-container { flex-direction: column; text-align: center; padding: 30px; gap: 30px; }
@@ -317,7 +347,7 @@
         }
         .contact-icon {
             font-size: 2.5rem;
-            color: var(--primary);
+            color: var(--primary-blue);
             margin-bottom: 20px;
         }
         .contact-title {
@@ -325,14 +355,15 @@
             font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 15px;
+            color: var(--dark-navy);
         }
         .contact-text { color: var(--text-muted); font-size: 1rem; line-height: 1.8; }
-        .contact-text a { color: var(--primary); font-weight: 500; }
+        .contact-text a { color: var(--primary-blue); font-weight: 500; }
         .contact-text a:hover { text-decoration: underline; }
 
         /* --- Footer --- */
         .footer {
-            background: var(--secondary);
+            background: var(--dark-navy);
             color: #94a3b8;
             padding: 50px 0;
             text-align: center;
@@ -358,7 +389,10 @@
     <!-- Header / Navigation -->
     <header class="header">
         <div class="container navbar">
-            <a href="#" class="nav-logo">RSV <span>Lab</span></a>
+            <a href="#" class="nav-logo">
+                <img src="https://github.com/rsv8lab.png" alt="RSV Lab Logo" style="height: 30px; border-radius: 4px;" onerror="this.style.display='none'">
+                RSV <span>Lab</span>
+            </a>
             <nav class="nav-links" id="navLinks">
                 <a href="#about">About</a>
                 <a href="#publications">Publications</a>
@@ -377,7 +411,10 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 class="hero-title">RSV Lab</h1>
+            <!-- Featured Banner Image -->
+            <img src="https://raw.githubusercontent.com/rsv8lab/rsv8lab/main/banner.png" alt="RSV Lab Banner" class="hero-banner" onerror="this.style.display='none'">
+            
+            <h1 class="hero-title">RSV <span>Lab</span></h1>
             <p class="hero-subtitle">
                 An Integrated Computational Framework for Microbiology, Antimicrobial Susceptibility Testing, and Bioinformatics Research.
             </p>
@@ -393,7 +430,7 @@
         <div class="container">
             <h2 class="section-title">About RSV Lab</h2>
             <p class="section-subtitle">
-                We bridge the gap between traditional microbiology and modern computational analysis, with a focus on antimicrobial resistance surveillance and CLSI/EUCAST-compliant susceptibility testing.
+                We bridge the gap between traditional microbiology and modern computational analysis, focusing on antimicrobial resistance surveillance and CLSI/EUCAST-compliant susceptibility testing.
             </p>
             <div class="card-grid">
                 <div class="card">
@@ -570,7 +607,7 @@
         <div class="container">
             <p>&copy; 2026 RSV Lab. All rights reserved.</p>
             <div class="footer-links">
-                <a href="https://github.com/rsv8lab" target="_blank" rel="noopener"> RSV Lab </a>
+                <a href="https://github.com/rsv8lab" target="_blank" rel="noopener"> RSV Lab GitHub</a>
                 <a href="https://github.com/KamolDas" target="_blank" rel="noopener">Founder GitHub</a>
             </div>
         </div>
