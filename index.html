@@ -30,7 +30,7 @@
     <style>
         /* --- CSS Variables & Reset --- */
         :root {
-            /* RSV Lab Brand Colors (Extracted from logo/banner) */
+            /* RSV Lab Brand Colors */
             --primary-orange: #FF8C00;
             --primary-purple: #7614DC;
             --primary-blue: #1E90FF;
@@ -44,6 +44,10 @@
             /* Fonts */
             --font-sans: 'Inter', sans-serif;
             --font-serif: 'Source Serif 4', serif;
+            
+            /* Spacing */
+            --card-padding: 35px;
+            --grid-gap: 30px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -70,7 +74,6 @@
         .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
         .section { padding: 80px 0; }
         
-        /* --- Section Titles with RSV Lab Colors --- */
         .section-title {
             font-family: var(--font-serif);
             font-size: 2.25rem;
@@ -116,6 +119,7 @@
             gap: 8px;
         }
         .nav-logo span { color: var(--primary-orange); }
+        .nav-logo .purple { color: var(--primary-purple); }
         .nav-links { display: flex; gap: 35px; font-weight: 600; font-size: 0.95rem; }
         .nav-links a { color: var(--dark-navy); }
         .nav-links a:hover { color: var(--primary-blue); }
@@ -192,37 +196,49 @@
             object-fit: cover;
         }
 
-        /* --- Cards & Grids --- */
+        /* =========================================
+           UNIVERSAL CARD SYSTEM (Auto-Aligning)
+           ========================================= */
         .card-grid {
             display: grid;
+            /* Auto-fits cards based on screen width. Adjust 320px to change min card width */
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            gap: var(--grid-gap);
+            align-items: stretch;
         }
+
         .card {
             background: var(--white);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 35px;
+            padding: var(--card-padding);
             transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
-            border-top: 5px solid var(--primary-blue);
+            height: 100%; /* Ensures all cards in a row are equal height */
+            border-top: 5px solid var(--primary-blue); /* Default border */
         }
+        
+        /* Alternate card border colors for visual variety */
         .card:nth-child(2) { border-top-color: var(--primary-orange); }
         .card:nth-child(3) { border-top-color: var(--primary-purple); }
+        .card:nth-child(4) { border-top-color: var(--primary-blue); }
         
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.06);
             border-color: #cbd5e1;
         }
+        
         .card-icon {
             font-size: 2rem;
             color: var(--primary-blue);
             margin-bottom: 20px;
         }
+        /* Alternate icon colors */
         .card:nth-child(2) .card-icon { color: var(--primary-orange); }
         .card:nth-child(3) .card-icon { color: var(--primary-purple); }
+        .card:nth-child(4) .card-icon { color: var(--primary-blue); }
         
         .card-title {
             font-family: var(--font-serif);
@@ -234,7 +250,7 @@
         .card-text {
             color: var(--text-muted);
             font-size: 0.95rem;
-            flex-grow: 1;
+            flex-grow: 1; /* Pushes the link to the bottom */
             margin-bottom: 20px;
         }
         .card-link {
@@ -244,10 +260,15 @@
             align-items: center;
             gap: 5px;
             color: var(--primary-blue);
+            margin-top: auto; /* Aligns link to bottom */
         }
 
-        /* --- Publications --- */
-        .publication-list { display: flex; flex-direction: column; gap: 25px; }
+        /* --- Publications (Specific Card Style) --- */
+        .publication-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
         .publication-item {
             display: flex;
             flex-direction: column;
@@ -277,7 +298,7 @@
         }
         .pub-link:hover { background: var(--primary-blue); color: var(--white); border-color: var(--primary-blue); }
 
-        /* --- Projects --- */
+        /* --- Projects (Filter Tabs) --- */
         .project-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
         .project-tabs button {
             padding: 10px 24px;
@@ -331,7 +352,7 @@
             .founder-social { justify-content: center; }
         }
 
-        /* --- Contact Section (Updated with Social Media) --- */
+        /* --- Contact Section --- */
         .contact-section {
             background-color: var(--white);
         }
@@ -359,12 +380,11 @@
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
-        /* Matching icon colors to brands */
-        .contact-card:nth-child(1) .contact-icon { color: var(--primary-blue); } /* Location */
-        .contact-card:nth-child(2) .contact-icon { color: var(--primary-orange); } /* Email */
-        .contact-card:nth-child(3) .contact-icon { color: var(--primary-purple); } /* Phone */
-        .contact-card:nth-child(4) .contact-icon { color: #1877F2; } /* Facebook */
-        .contact-card:nth-child(5) .contact-icon { color: #FF0000; } /* YouTube */
+        .contact-card:nth-child(1) .contact-icon { color: var(--primary-blue); }
+        .contact-card:nth-child(2) .contact-icon { color: var(--primary-orange); }
+        .contact-card:nth-child(3) .contact-icon { color: var(--primary-purple); }
+        .contact-card:nth-child(4) .contact-icon { color: #1877F2; }
+        .contact-card:nth-child(5) .contact-icon { color: #FF0000; }
         
         .contact-title {
             font-family: var(--font-serif);
@@ -377,7 +397,6 @@
         .contact-text a { color: var(--primary-blue); font-weight: 500; }
         .contact-text a:hover { text-decoration: underline; }
         
-        /* Social Buttons */
         .social-btn {
             display: inline-flex;
             align-items: center;
@@ -407,12 +426,15 @@
         .footer a:hover { color: var(--white); }
         .footer-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; flex-wrap: wrap; }
 
-        /* --- Responsive --- */
+        /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
+            :root {
+                --card-padding: 25px;
+                --grid-gap: 20px;
+            }
             .hero-title { font-size: 2.2rem; }
             .hero-subtitle { font-size: 1rem; }
             .section-title { font-size: 1.8rem; }
-            .publication-item { padding: 20px; }
             .section { padding: 60px 0; }
         }
     </style>
@@ -424,7 +446,7 @@
         <div class="container navbar">
             <a href="#" class="nav-logo">
                 <img src="https://github.com/rsv8lab.png" alt="RSV Lab Logo" style="height: 30px; border-radius: 4px;" onerror="this.style.display='none'">
-                <h2 class="section-title">  <span>RSV</span> <span class="purple">Lab</span></h2>
+                RSV <span>Lab</span>
             </a>
             <nav class="nav-links" id="navLinks">
                 <a href="#about">About</a>
@@ -447,7 +469,7 @@
         <div class="container">
             <img src="https://raw.githubusercontent.com/rsv8lab/rsv8lab/main/banner.png" alt="RSV Lab Banner" class="hero-banner" onerror="this.style.display='none'">
             
-            <h1 class="hero-title">  <span>RSV</span> <span class="purple">Lab</span></h1>
+            <h1 class="hero-title">RSV <span class="purple">Lab</span></h1>
             <p class="hero-subtitle">
                 An Integrated Computational Framework for Microbiology, Antimicrobial Susceptibility Testing, and Bioinformatics Research.
             </p>
@@ -458,123 +480,42 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section (Dynamic) -->
     <section class="section" id="about">
         <div class="container">
             <h2 class="section-title">About <span>RSV</span> <span class="purple">Lab</span></h2>
             <p class="section-subtitle">
                 We bridge the gap between traditional microbiology and modern computational analysis, focusing on antimicrobial resistance surveillance and CLSI/EUCAST-compliant susceptibility testing.
             </p>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-microscope"></i></div>
-                    <h3 class="card-title">Research &amp; Development</h3>
-                    <p class="card-text">Clinical microbiology, antimicrobial resistance (AMR) surveillance, and drug discovery, grounded in CLSI M100 and EUCAST breakpoint standards.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3 class="card-title">Bioinformatics &amp; Data Analysis</h3>
-                    <p class="card-text">Python and R-based tools for AST data structuring, MDR/XDR/PDR classification, and machine learning applications in AMR data.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><i class="fas fa-flask"></i></div>
-                    <h3 class="card-title">Biotechnology &amp; Pharma</h3>
-                    <p class="card-text">Applying scientific knowledge to real-world challenges in pharmaceuticals, quality control, and industrial biotechnology.</p>
-                </div>
+            <div class="card-grid" id="aboutGrid">
+                <!-- Cards are injected here via JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- Publications Section -->
+    <!-- Publications Section (Dynamic) -->
     <section class="section" id="publications" style="background-color: var(--white);">
         <div class="container">
             <h2 class="section-title">Recent <span>Research</span> &amp; Publications</h2>
             <p class="section-subtitle">Our latest contributions to the scientific community, available via open-access repositories.</p>
-            <div class="publication-list">
-                <div class="publication-item">
-                    <h3 class="pub-title">An Integrated Computational Framework for Antimicrobial Susceptibility Testing</h3>
-                    <p class="pub-authors"><strong>Kamol Das</strong> et al.</p>
-                    <p class="pub-journal">Zenodo Preprint, 2026</p>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.5281/zenodo.20589848" target="_blank" rel="noopener" class="pub-link">DOI</a>
-                    </div>
-                </div>
-                <div class="publication-item">
-                    <h3 class="pub-title">Machine Learning Analysis Reports for Microbial Data</h3>
-                    <p class="pub-authors"><strong>Kamol Das</strong> et al.</p>
-                    <p class="pub-journal">Zenodo Dataset, 2026</p>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.5281/zenodo.21534293" target="_blank" rel="noopener" class="pub-link">DOI</a>
-                    </div>
-                </div>
-                <div class="publication-item">
-                    <h3 class="pub-title">RSV Lab Official Logo</h3>
-                    <p class="pub-authors"><strong>Kamol Das</strong></p>
-                    <p class="pub-journal">Zenodo, 2026</p>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.5281/zenodo.19209980" target="_blank" rel="noopener" class="pub-link">DOI</a>
-                    </div>
-                </div>
+            <div class="publication-list" id="pubList">
+                <!-- Publications are injected here via JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section (Dynamic) -->
     <section class="section" id="projects">
         <div class="container">
             <h2 class="section-title">Our <span class="purple">Projects</span></h2>
             <p class="section-subtitle">Open-source tools and research repositories developed by RSV Lab and its founder.</p>
             <div class="project-tabs">
-                <button class="active" onclick="filterSelection('all', event)">All</button>
-                <button onclick="filterSelection('lab', event)">RSV Lab Repos</button>
-                <button onclick="filterSelection('personal', event)">Founder's Repos</button>
+                <button class="active" onclick="filterProjects('all', event)">All</button>
+                <button onclick="filterProjects('lab', event)">RSV Lab Repos</button>
+                <button onclick="filterProjects('personal', event)">Founder's Repos</button>
             </div>
             <div class="card-grid" id="projectGrid">
-                <!-- RSV Lab Projects -->
-                <div class="card project-card" data-category="lab">
-                    <div class="card-icon"><i class="fas fa-robot"></i></div>
-                    <h3 class="card-title">RSVLab-ASTLearn</h3>
-                    <p class="card-text">AST machine learning toolkit for predicting antimicrobial susceptibility.</p>
-                    <a href="https://github.com/rsv8lab/RSVLab-ASTLearn" target="_blank" rel="noopener" class="card-link">View Repository <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="card project-card" data-category="lab">
-                    <div class="card-icon"><i class="fas fa-dna"></i></div>
-                    <h3 class="card-title">RSVLab-Bioinformatics</h3>
-                    <p class="card-text">DNA/RNA sequence analysis tools for genomic research.</p>
-                    <a href="https://github.com/rsv8lab/RSVLab-Bioinformatics" target="_blank" rel="noopener" class="card-link">View Repository <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="card project-card" data-category="lab">
-                    <div class="card-icon"><i class="fas fa-database"></i></div>
-                    <h3 class="card-title">RSVLab-DNAStore</h3>
-                    <p class="card-text">RSV algorithm DNA-computing framework for data storage.</p>
-                    <a href="https://github.com/rsv8lab/RSVLab-DNAStore" target="_blank" rel="noopener" class="card-link">View Repository <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="card project-card" data-category="lab">
-                    <div class="card-icon"><i class="fas fa-bacteria"></i></div>
-                    <h3 class="card-title">RSVLab-Microbiology</h3>
-                    <p class="card-text">CLSI, EUCAST, MPN, drug development &amp; discovery, and AST reference databases.</p>
-                    <a href="https://github.com/rsv8lab/RSVLab-Microbiology" target="_blank" rel="noopener" class="card-link">View Repository <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Founder's Personal Projects -->
-                <div class="card project-card" data-category="personal">
-                    <div class="card-icon"><i class="fas fa-flask"></i></div>
-                    <h3 class="card-title">AST-Tool</h3>
-                    <p class="card-text">Python workflow for 2×2, 3×3, and 4×4 AST matrix agreement analysis — a CLSI-compliant method validation tool.</p>
-                    <a href="https://github.com/KamolDas/AST-Tool" target="_blank" rel="noopener" class="card-link">View Repository <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="card project-card" data-category="personal">
-                    <div class="card-icon"><i class="fas fa-code"></i></div>
-                    <h3 class="card-title">DNA-sequence-for-data-store</h3>
-                    <p class="card-text">DNA-as-string and Unicode-text-based approaches for data storage.</p>
-                    <a href="https://github.com/KamolDas/DNA-sequence-for-data-store" target="_blank" rel="noopener" class="card-link">View Repository <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="card project-card" data-category="personal">
-                    <div class="card-icon"><i class="fas fa-terminal"></i></div>
-                    <h3 class="card-title">C-basic</h3>
-                    <p class="card-text">Basic C programming practice and examples.</p>
-                    <a href="https://github.com/KamolDas/C-basic" target="_blank" rel="noopener" class="card-link">View Repository <i class="fas fa-arrow-right"></i></a>
-                </div>
+                <!-- Projects are injected here via JavaScript -->
             </div>
         </div>
     </section>
@@ -601,13 +542,12 @@
         </div>
     </section>
 
-    <!-- Contact Section (Updated with Social Media) -->
+    <!-- Contact Section -->
     <section class="section contact-section" id="contact">
         <div class="container">
             <h2 class="section-title">Contact <span>RSV</span> <span class="purple">Lab</span></h2>
             <p class="section-subtitle">Get in touch with RSV Lab for collaborations, research inquiries, or general questions.</p>
             <div class="contact-grid">
-                <!-- Location -->
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h3 class="contact-title">Location</h3>
@@ -616,8 +556,6 @@
                         Chittagong, Bangladesh
                     </p>
                 </div>
-                
-                <!-- Email -->
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <h3 class="contact-title">Email</h3>
@@ -626,8 +564,6 @@
                         <a href="mailto:20605032@std.cu.ac.bd">20605032@std.cu.ac.bd</a>
                     </p>
                 </div>
-                
-                <!-- Phone -->
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-phone"></i></div>
                     <h3 class="contact-title">Phone</h3>
@@ -636,8 +572,6 @@
                         01867-771598
                     </p>
                 </div>
-
-                <!-- Facebook -->
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fab fa-facebook"></i></div>
                     <h3 class="contact-title">Facebook</h3>
@@ -646,8 +580,6 @@
                         <i class="fab fa-facebook"></i> Visit Page
                     </a>
                 </div>
-
-                <!-- YouTube -->
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fab fa-youtube"></i></div>
                     <h3 class="contact-title">YouTube</h3>
@@ -673,9 +605,97 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- =========================================
+         JAVASCRIPT: DYNAMIC CONTENT SYSTEM
+         ========================================= -->
     <script>
-        function filterSelection(category, event) {
+        // --- 1. DATA CONFIGURATION ---
+        
+        // About Cards Data
+        const aboutData = [
+            { icon: "fa-microscope", title: "Research & Development", text: "Clinical microbiology, antimicrobial resistance (AMR) surveillance, and drug discovery, grounded in CLSI M100 and EUCAST breakpoint standards." },
+            { icon: "fa-laptop-code", title: "Bioinformatics & Data Analysis", text: "Python and R-based tools for AST data structuring, MDR/XDR/PDR classification, and machine learning applications in AMR data." },
+            { icon: "fa-flask", title: "Biotechnology & Pharma", text: "Applying scientific knowledge to real-world challenges in pharmaceuticals, quality control, and industrial biotechnology." }
+        ];
+
+        // Publications Data
+        const pubData = [
+            { 
+                title: "An Integrated Computational Framework for Antimicrobial Susceptibility Testing", 
+                authors: "<strong>Kamol Das</strong> et al.", 
+                journal: "Zenodo Preprint, 2026", 
+                links: [{ label: "DOI", url: "https://doi.org/10.5281/zenodo.20589848" }] 
+            },
+            { 
+                title: "Machine Learning Analysis Reports for Microbial Data", 
+                authors: "<strong>Kamol Das</strong> et al.", 
+                journal: "Zenodo Dataset, 2026", 
+                links: [{ label: "DOI", url: "https://doi.org/10.5281/zenodo.21534293" }] 
+            },
+            { 
+                title: "RSV Lab Official Logo", 
+                authors: "<strong>Kamol Das</strong>", 
+                journal: "Zenodo, 2026", 
+                links: [{ label: "DOI", url: "https://doi.org/10.5281/zenodo.19209980" }] 
+            }
+        ];
+
+        // Projects Data
+        const projectData = [
+            // Lab Projects
+            { category: "lab", icon: "fa-robot", title: "RSVLab-ASTLearn", text: "AST machine learning toolkit for predicting antimicrobial susceptibility.", link: "https://github.com/rsv8lab/RSVLab-ASTLearn" },
+            { category: "lab", icon: "fa-dna", title: "RSVLab-Bioinformatics", text: "DNA/RNA sequence analysis tools for genomic research.", link: "https://github.com/rsv8lab/RSVLab-Bioinformatics" },
+            { category: "lab", icon: "fa-database", title: "RSVLab-DNAStore", text: "RSV algorithm DNA-computing framework for data storage.", link: "https://github.com/rsv8lab/RSVLab-DNAStore" },
+            { category: "lab", icon: "fa-bacteria", title: "RSVLab-Microbiology", text: "CLSI, EUCAST, MPN, drug development & discovery, and AST reference databases.", link: "https://github.com/rsv8lab/RSVLab-Microbiology" },
+            // Founder Projects
+            { category: "personal", icon: "fa-flask", title: "AST-Tool", text: "Python workflow for 2×2, 3×3, and 4×4 AST matrix agreement analysis — a CLSI-compliant method validation tool.", link: "https://github.com/KamolDas/AST-Tool" },
+            { category: "personal", icon: "fa-code", title: "DNA-sequence-for-data-store", text: "DNA-as-string and Unicode-text-based approaches for data storage.", link: "https://github.com/KamolDas/DNA-sequence-for-data-store" },
+            { category: "personal", icon: "fa-terminal", title: "C-basic", text: "Basic C programming practice and examples.", link: "https://github.com/KamolDas/C-basic" }
+        ];
+
+        // --- 2. RENDER FUNCTIONS ---
+
+        // Render About Cards
+        const aboutGrid = document.getElementById('aboutGrid');
+        aboutData.forEach(item => {
+            aboutGrid.innerHTML += `
+                <div class="card">
+                    <div class="card-icon"><i class="fas ${item.icon}"></i></div>
+                    <h3 class="card-title">${item.title}</h3>
+                    <p class="card-text">${item.text}</p>
+                </div>
+            `;
+        });
+
+        // Render Publications
+        const pubList = document.getElementById('pubList');
+        pubData.forEach(pub => {
+            const linkHtml = pub.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="pub-link">${l.label}</a>`).join('');
+            pubList.innerHTML += `
+                <div class="publication-item">
+                    <h3 class="pub-title">${pub.title}</h3>
+                    <p class="pub-authors">${pub.authors}</p>
+                    <p class="pub-journal">${pub.journal}</p>
+                    <div class="pub-links">${linkHtml}</div>
+                </div>
+            `;
+        });
+
+        // Render Projects
+        const projectGrid = document.getElementById('projectGrid');
+        projectData.forEach(proj => {
+            projectGrid.innerHTML += `
+                <div class="card project-card" data-category="${proj.category}">
+                    <div class="card-icon"><i class="fas ${proj.icon}"></i></div>
+                    <h3 class="card-title">${proj.title}</h3>
+                    <p class="card-text">${proj.text}</p>
+                    <a href="${proj.link}" target="_blank" rel="noopener" class="card-link">View Repository <i class="fas fa-arrow-right"></i></a>
+                </div>
+            `;
+        });
+
+        // --- 3. PROJECT FILTERING ---
+        function filterProjects(category, event) {
             const items = document.querySelectorAll('.project-card');
             const buttons = document.querySelectorAll('.project-tabs button');
 
@@ -693,7 +713,7 @@
             });
         }
 
-        // Mobile nav toggle
+        // --- 4. MOBILE NAV TOGGLE ---
         const navToggle = document.getElementById('navToggle');
         const navLinks = document.getElementById('navLinks');
         navToggle.addEventListener('click', () => {
